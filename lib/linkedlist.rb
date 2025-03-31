@@ -15,7 +15,7 @@ class LinkedList
   def add_node(value)
     node = Node.new(value)
 
-    if @size <= MAX
+    if @size <= MAX # implement full? method instead of if
       if @head.nil?
         @head = node
         @tail = node
@@ -28,11 +28,15 @@ class LinkedList
     @size += 1
   end
 
-  def each
-    actual_node = @root
+  def at(index)
+    actual_node = @head
+    i = 0
     while actual_node
-      yield actual_node
+      return actual_node if i == index
+
       actual_node = actual_node.next_node
+      i += 1
     end
+    nil
   end
 end
