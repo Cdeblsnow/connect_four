@@ -12,6 +12,10 @@ class LinkedList
     @size = 0
   end
 
+  def full?
+    !(@size <= MAX)
+  end
+
   def add_node(value)
     node = Node.new(value)
 
