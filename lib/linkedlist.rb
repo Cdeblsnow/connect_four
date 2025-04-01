@@ -19,7 +19,7 @@ class LinkedList
   def add_node(value)
     node = Node.new(value)
 
-    if @size <= MAX # implement full? method instead of if
+    if @size <= MAX
       if @head.nil?
         @head = node
         @tail = node
