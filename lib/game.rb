@@ -27,21 +27,25 @@ module Game
   end
 
   def player_init(number_of_players = 0)
-    players = []
-
     if number_of_players < 2 || number_of_players > 4
       (1..2).each do |i = 1|
         puts "Please add player#{i} name"
         player_name = gets.chomp
-        players << Player.new(player_name)
+        @player_list << Player.new(player_name)
       end
     else
       (1..number_of_players.length).each do |i|
         puts "Please add player#{i} name"
         player_name = gets.chomp
-        players << Player.new(player_name)
+        @player_list << Player.new(player_name)
       end
     end
-    players
+    @player_list
+  end
+
+  def show_list_of_players
+    @player_list.each do |player|
+      puts "Payer: #{player.name} mark: #{player.token}"
+    end
   end
 end
