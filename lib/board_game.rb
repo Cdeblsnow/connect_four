@@ -8,6 +8,7 @@ class BoardGame
 
   def initialize
     @node_lists = (1..7).to_h { |i| [i, LinkedList.new] }
+    @player_list = []
   end
 
   def display
