@@ -48,4 +48,10 @@ module Game
       puts "Payer: #{player.name} mark: #{player.token}"
     end
   end
+
+  def select_column(column, player_token) # needs testing
+    @node_lists.each do |key, content|
+      content.add_node(player_token) if key == column
+    end
+  end
 end
