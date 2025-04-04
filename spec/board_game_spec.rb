@@ -3,29 +3,31 @@ require_relative "../lib/board_game"
 describe BoardGame do
   describe "#player_init" do
     subject(:board_player) { described_class.new }
+    let(:player_list) { board_player.instance_variable_get(:@player_list) }
     it "create two players as default when input is 0" do
-      players = board_player.player_init
-      expect(players.length).to eq(2)
+      board_player.player_init(0)
+      expect(player_list.length).to eq(2)
     end
 
     it "create two players as default when input is less than 2" do
-      players = board_player.player_init
-      expect(players.length).to eq(2)
+      board_player.player_init(1)
+      expect(player_list.length).to eq(2)
     end
 
     it "create two players as default when input is more than 4" do
-      players = board_player.player_init
-      expect(players.length).to eq(2)
+      board_player.player_init(5)
+      expect(player_list.length).to eq(2)
     end
 
     it "create three players when input is 3" do
-      players = board_player.player_init
-      expect(players.length).to eq(3)
+      board_player.player_init(3)
+      puts player_list.length
+      expect(player_list.length).to eq(3)
     end
 
-    it "create three players when input is 4" do
-      players = board_player.player_init
-      expect(players.length).to eq(4)
+    it "create four players when input is 4" do
+      board_player.player_init(4)
+      expect(player_list.length).to eq(4)
     end
   end
 
@@ -42,8 +44,17 @@ describe BoardGame do
       board_column.select_column(1, "f")
       list = board_column.instance_variable_get(:@node_lists)
       node = list[1].head
-      expect(node.value).to eq("f") # head last element added
-      expect(node.next_node.value).to eq("p") # tail first element  added
+      expect(node.value).to eq("p") # head first element added
+      expect(node.next_node.value).to eq("f") # tail last element  added
+    end
+  end
+
+  context "testing Victory module" do
+    describe "#vertical_win?" do
+      subject(:vertical_win) { described_class.new }
+      it "returns true when there is four in a row" do
+        expect
+      end
     end
   end
 end
