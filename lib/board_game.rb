@@ -48,4 +48,22 @@ class BoardGame
   def return_columns
     @node_lists
   end
+
+  def each_vertical_node
+    @node_lists.each_value do |elem|
+      5.downto(0) do |index|
+        node = elem.at(index).value unless elem.at(index).nil?
+        yield node
+      end
+    end
+  end
+
+  def each_horizontal_node
+    5.downto(0) do |index|
+      @node_lists.each_value do |elem|
+        node = elem.at(index).value unless elem.at(index).nil?
+        yield node
+      end
+    end
+  end
 end
