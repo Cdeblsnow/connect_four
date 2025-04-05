@@ -52,8 +52,27 @@ describe BoardGame do
   context "testing Victory module" do
     describe "#vertical_win?" do
       subject(:vertical_win) { described_class.new }
+      let(:columns) { vertical_win.instance_variable_get(:@node_lists) }
+      it "returns true when there is four in a column" do
+        token = "p"
+        columns.each do |key, content|
+          content.add_node("c") if key == 1
+          4.times { |i| content.add_node(token) } if key == 1
+        end
+        expect(vertical_win.vertical_win?(token)).to eq(true)
+      end
+    end
+
+    describe "#horizontal_win?" do
+      subject(:horizontal_win) { described_class.new }
+      let(:columns) { horizontal_win.instance_variable_get(:@node_lists) }
       it "returns true when there is four in a row" do
-        expect
+        token = "p"
+        columns.each_value do |content|
+          content.add_node("c")
+          content.add_node(token)
+        end
+        expect(horizontal_win.horizontal_win?(token)).to eq(true)
       end
     end
   end
