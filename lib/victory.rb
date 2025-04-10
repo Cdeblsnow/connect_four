@@ -41,4 +41,18 @@ module Victory
     end
     false
   end
+
+  def right_diagonal_win?(player_token)
+    i = 0
+    each_right_diagonal_node do |node|
+      if node.value == player_token
+        i += 1
+        puts "#{node.value} : #{i}" # to be removed
+      else
+        i = 0
+      end
+      return true if i == 4
+    end
+    false
+  end
 end
