@@ -93,4 +93,22 @@ describe BoardGame do
       expect(diagonal.left_diagonal_win?(token)).to eq(true)
     end
   end
+
+  describe "#right_diagonal_win?" do
+    subject(:diagonal) { described_class.new }
+    let(:columns) { diagonal.instance_variable_get(:@node_lists) }
+    it "returns true when there are four of the same token in a diagonal" do
+      token = "t"
+      index = 4
+      columns.each_value do |content|
+        4.times do |i|
+          content.add_node(token) if i == (4 - index)
+          content.add_node("c") if i < 4
+        end
+        index -= 1 if index < 5
+      end
+
+      expect(diagonal.right_diagonal_win?(token)).to eq(true)
+    end
+  end
 end
