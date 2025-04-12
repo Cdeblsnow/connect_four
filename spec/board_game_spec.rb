@@ -107,8 +107,55 @@ describe BoardGame do
         end
         index -= 1 if index < 5
       end
-
       expect(diagonal.right_diagonal_win?(token)).to eq(true)
+    end
+  end
+
+  describe "#victory?" do # rubocop:disable Metrics/BlockLength
+    subject(:board_victory) { described_class.new }
+    let(:columns) { board_victory.instance_variable_get(:@node_lists) }
+    it "return true for vertical win" do
+      token = "p"
+      columns.each do |key, content|
+        content.add_node("c") if key == 1
+        4.times { |i| content.add_node(token) } if key == 1 # rubocop:disable Lint/UnusedBlockArgument
+      end
+      expect(board_victory.victory?(token)).to eq(true)
+    end
+
+    it "returns true for horizontal win" do
+      token = "p"
+      columns.each_value do |content|
+        content.add_node("c")
+        content.add_node(token)
+      end
+      expect(board_victory.victory?(token)).to eq(true)
+    end
+
+    it "returns true for left diagonal win" do
+      token = "t"
+      index = 0
+      columns.each_value do |content|
+        4.times do |i|
+          content.add_node(token) if i == (4 - index)
+          content.add_node("c") if i < 4
+        end
+        index += 1 if index < 5
+      end
+      expect(board_victory.victory?(token)).to eq(true)
+    end
+
+    it "returns true for right diagonal win" do
+      token = "t"
+      index = 4
+      columns.each_value do |content|
+        4.times do |i|
+          content.add_node(token) if i == (4 - index)
+          content.add_node("c") if i < 4
+        end
+        index -= 1 if index < 5
+      end
+      expect(board_victory.victory?(token)).to eq(true)
     end
   end
 end
