@@ -34,7 +34,7 @@ module Game
         @player_list << Player.new(player_name)
       end
     else
-      (1..number_of_players.length).each do |i|
+      (1..number_of_players).each do |i|
         puts "Please add player#{i} name"
         player_name = gets.chomp
         @player_list << Player.new(player_name)
@@ -52,6 +52,18 @@ module Game
   def select_column(column, player_token) # needs testing
     @node_lists.each do |key, content|
       content.add_node(player_token) if key == column
+    end
+  end
+
+  def congratulations(winner)
+    puts <<~HEREDOC
+
+      Congratulations#{winner} for winning!
+
+      The game ends with the following score:
+    HEREDOC
+    @player_list.each do |player|
+      puts "Payer: #{player.name} points: #{player.points}"
     end
   end
 end
