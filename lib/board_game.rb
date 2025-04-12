@@ -49,7 +49,7 @@ class BoardGame
     @node_lists
   end
 
-  def each_vertical_node
+  def each_vertical_node # add test
     @node_lists.each_value do |elem|
       5.downto(0) do |index|
         node = elem.at(index).value unless elem.at(index).nil?
@@ -58,11 +58,41 @@ class BoardGame
     end
   end
 
-  def each_horizontal_node
+  def each_horizontal_node # add test
     5.downto(0) do |index|
       @node_lists.each_value do |elem|
         node = elem.at(index).value unless elem.at(index).nil?
         yield node
+      end
+    end
+  end
+
+  def each_left_diagonal_node # add test
+    (1..4).each do |column|
+      (3..5).each do |row|
+        4.times do |i|
+          col = column + i
+          r = row - i
+          node = @node_lists[col].at(r)
+          break if node.nil?
+
+          yield node.value
+        end
+      end
+    end
+  end
+
+  def each_right_diagonal_node # add test
+    (1..4).each do |column|
+      (0..2).each do |row|
+        4.times do |i|
+          col = column + i
+          r = row + i
+          node = @node_lists[col].at(r)
+          break if node.nil?
+
+          yield node.value
+        end
       end
     end
   end
