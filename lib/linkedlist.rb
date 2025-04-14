@@ -1,7 +1,7 @@
 require_relative "node"
 
 class LinkedList
-  attr_reader :root
+  attr_reader :head, :tail, :size
 
   include Enumerable
   MAX = 6
@@ -13,22 +13,22 @@ class LinkedList
   end
 
   def full?
-    !(@size <= MAX)
+    return true if @size == MAX
+
+    false
   end
 
   def add_node(value)
     node = Node.new(value)
 
-    if @size <= MAX
-      if @head.nil?
-        @head = node
-        @tail = node
-      else
-        node.add_next(@head)
-        @head = node
-      end
+    if @head.nil?
+      @head = node
+    else
+      @tail.add_next(node)
+
     end
 
+    @tail = node # update the tail pointer to the latest node
     @size += 1
   end
 
