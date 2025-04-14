@@ -63,4 +63,18 @@ module Victory
 
     false
   end
+
+  def tie?
+    i = 0
+    @node_lists.each_value do |column|
+      if column.full?
+        i += 1
+      else
+        i = 0
+      end
+    end
+    return true if i == 7
+
+    false
+  end
 end
