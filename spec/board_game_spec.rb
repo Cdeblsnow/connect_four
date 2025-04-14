@@ -1,6 +1,6 @@
 require_relative "../lib/board_game"
 
-describe BoardGame do
+describe BoardGame do # rubocop:disable Metrics/BlockLength
   describe "#player_init" do
     subject(:board_player) { described_class.new }
     let(:player_list) { board_player.instance_variable_get(:@player_list) }
@@ -156,6 +156,18 @@ describe BoardGame do
         index -= 1 if index < 5
       end
       expect(board_victory.victory?(token)).to eq(true)
+    end
+  end
+
+  describe "#tie?" do
+    subject(:board_tie) { described_class.new }
+    let(:columns) { board_tie.instance_variable_get(:@node_lists) }
+    it "returns true when all columns are full" do
+      token = "p"
+      columns.each_value do |content|
+        6.times { content.add_node(token) }
+      end
+      expect(board_tie.tie?).to eq(true)
     end
   end
 end
