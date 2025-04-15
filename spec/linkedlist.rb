@@ -11,7 +11,7 @@ describe LinkedList do
     it "adds a two new nodes" do
       new_node.add_node(1)
       new_node.add_node(2)
-      expect(new_node.instance_variable_get(:@head).value).to be(2)
+      expect(new_node.instance_variable_get(:@tail).value).to be(2)
     end
   end
 
@@ -27,7 +27,7 @@ describe LinkedList do
     context "when the list size is more than six" do
       subject(:full_node) { described_class.new }
       it "returns true" do
-        7.times { |num| full_node.add_node(num) }
+        6.times { |num| full_node.add_node(num) }
         expect(full_node.full?).to be(true)
       end
     end
