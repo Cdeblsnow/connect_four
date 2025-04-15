@@ -33,7 +33,6 @@ module Victory
     each_left_diagonal_node do |node|
       if node == player_token
         i += 1
-        puts "#{node} : #{i}" # to be removed
       else
         i = 0
       end
@@ -47,7 +46,6 @@ module Victory
     each_right_diagonal_node do |node|
       if node == player_token
         i += 1
-        puts "#{node} : #{i}" # to be removed
       else
         i = 0
       end
