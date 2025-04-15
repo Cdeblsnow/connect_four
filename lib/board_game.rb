@@ -16,6 +16,10 @@ class BoardGame
     @player_list = []
   end
 
+  def reset_columns
+    @node_lists = (1..7).to_h { |i| [i, LinkedList.new] }
+  end
+
   def display
     current = search_current
     puts " \n\n#{current}"
