@@ -58,7 +58,7 @@ module Game
   def congratulations(winner)
     puts <<~HEREDOC
 
-      Congratulations#{winner} for winning!
+      Congratulations #{winner} for winning!
 
       The game ends with the following score:
     HEREDOC
@@ -77,5 +77,9 @@ module Game
     @player_list.each do |player|
       puts "Payer: #{player.name} points: #{player.points}"
     end
+  end
+
+  def thanks
+    puts "Thanks for playing!"
   end
 end
