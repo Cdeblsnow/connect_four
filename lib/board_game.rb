@@ -53,7 +53,7 @@ class BoardGame
     @node_lists
   end
 
-  def each_vertical_node # add test
+  def each_vertical_node
     @node_lists.each_value do |elem|
       5.downto(0) do |index|
         node = elem.at(index).value unless elem.at(index).nil?
@@ -62,7 +62,7 @@ class BoardGame
     end
   end
 
-  def each_horizontal_node # add test
+  def each_horizontal_node
     5.downto(0) do |index|
       @node_lists.each_value do |elem|
         node = elem.at(index).value unless elem.at(index).nil?
@@ -71,7 +71,7 @@ class BoardGame
     end
   end
 
-  def each_left_diagonal_node # add test
+  def each_left_diagonal_node
     (1..4).each do |column|
       (3..5).each do |row|
         4.times do |i|
@@ -86,7 +86,7 @@ class BoardGame
     end
   end
 
-  def each_right_diagonal_node # add test
+  def each_right_diagonal_node
     (1..4).each do |column|
       (0..2).each do |row|
         4.times do |i|
