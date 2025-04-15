@@ -170,4 +170,21 @@ describe BoardGame do # rubocop:disable Metrics/BlockLength
       expect(board_tie.tie?).to eq(true)
     end
   end
+
+  describe "#reset_columns" do
+    subject(:board_reset_col) { described_class.new }
+    it "empty all columns" do
+      columns = board_reset_col.return_columns
+      token = "p"
+      columns.each_value do |content|
+        6.times { content.add_node(token) }
+      end
+
+      board_reset_col.reset_columns
+      columns = board_reset_col.return_columns # refresh the object reference
+      columns.each_value do |content|
+        expect(content.size).to eq(0)
+      end
+    end
+  end
 end
