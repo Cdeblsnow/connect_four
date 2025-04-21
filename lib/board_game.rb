@@ -3,6 +3,9 @@ require_relative "game"
 require_relative "tokens"
 require_relative "victory"
 
+# Display, search, redraw, add node, and the creation of columns come from XAJX179 project
+# You can check their work on https://github.com/XAJX179/Connect-four
+
 class BoardGame
   attr_accessor :node_lists # remove an change it for a getter method
 
